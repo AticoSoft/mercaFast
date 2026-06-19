@@ -1,0 +1,136 @@
+/* Capitalización visual en todo el sistema */
+.todo-capitalizado, input, select, option {
+    text-transform: capitalize;
+}
+
+/* Transición fluida de pestañas */
+.tab-content {
+    animation: fadeUp 0.15s ease-out;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(2px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Color personalizado para el encabezado */
+.encabezado-app {
+    background-color: #4169E1; /* Color gris pizarroso/verde oscuro (DarkSlateGray) */
+}
+
+/* Forzar que los textos internos se adapten si el fondo es oscuro */
+.encabezado-app h1 {
+    color: #ffffff !important;
+}
+
+.encabezado-app p {
+    color: #d6d3d1 !important; /* Gris claro para el total estimado */
+}
+
+.encabezado-app #contador-compras {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+}
+
+
+
+
+/* --- CHECKBOX CON CHULITO MINIMALISTA --- */
+.area-check {
+    position: relative;
+    width: 18px;
+    height: 18px;
+}
+
+.checkbox-oculto {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.chulito-falso {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #d6d3d1;
+    border-radius: 50%;
+    background-color: transparent;
+    transition: all 0.2s ease;
+    z-index: 1;
+}
+
+.chulito-falso::after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 6px;
+    top: 3px;
+    width: 5px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 1.5px 1.5px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-oculto:checked + .chulito-falso {
+    background-color: #2f4f4f;
+    border-color: #2f4f4f;
+}
+
+.checkbox-oculto:checked + .chulito-falso::after {
+    display: block;
+}
+
+/* --- TACHADO EXCLUSIVO POR CHECKBOX --- */
+.contenedor-fila-lista:has(.checkbox-oculto:checked) .texto-producto,
+.contenedor-fila-lista:has(.checkbox-oculto:checked) .precio-tag {
+    text-decoration: line-through;
+    color: #a8a29e;
+    opacity: 0.4;
+    transition: all 0.2s ease;
+}
+
+/* --- BOTÓN ELIMINAR EN DESPENSA --- */
+.btn-eliminar {
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-eliminar:active {
+    color: #ef4444 !important;
+}
+
+/* Rotación de la mini flecha del cajón de pendientes */
+.rotar-90 {
+    transform: rotate(90deg);
+}
+
+/* --- AJUSTES DE FIJACIÓN INFERIOR Y EDICIÓN --- */
+
+/* Asegura espacio libre abajo para que la barra fija nunca tape el contenido de los bloques */
+body {
+    padding-bottom: 75px !important;
+}
+
+/* Estilos para los campos de entrada de edición en caliente dentro de las filas */
+.minimal-fila-despensa input {
+    font-size: 12px;
+    padding: 3px 6px;
+}
+
+/* Desactiva la capitalización forzada mientras se escribe el precio en modo edición */
+.minimal-fila-despensa input[type="number"] {
+    text-transform: none;
+}
